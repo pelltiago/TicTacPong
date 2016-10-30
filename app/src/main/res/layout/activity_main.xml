@@ -11,13 +11,13 @@
 
         <Button
             style="@style/AppTheme" android:onClick="clickBoton1" android:layout_gravity="center"
-            android:layout_width="178dp"
-            android:layout_height="250dp" />
+            android:layout_width="180dp"
+            android:layout_height="255dp" />
 
         <Button
             style="@style/AppTheme" android:onClick="clickBoton2"
-            android:layout_width="178dp"
-            android:layout_height="250dp" />
+            android:layout_width="180dp"
+            android:layout_height="255dp" />
 
     </LinearLayout>
 
@@ -29,13 +29,15 @@
 
         <Button
             style="@style/AppTheme" android:onClick="clickBoton3"
-            android:layout_height="250dp"
-            android:layout_width="178dp" />
+            android:layout_width="180dp"
+            android:layout_height="255dp" />
 
         <Button
             style="@style/AppTheme" android:onClick="clickBoton4"
-            android:layout_height="250dp"
-            android:layout_width="178dp" />
+            android:layout_width="180dp"
+            android:layout_height="255dp" />
+
+
 
     </LinearLayout>
 

@@ -10,70 +10,93 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
 
-    public class Boton {
-        public int uno;
-        public int dos;
-        public int cont;
+    int Golpe;
+    int Destino;
+    int GolpeAnterior;
+    int DestinoAnterior;
+    boolean PrimerGolpe;
 
-        public Boton(int uno, int dos) {
-            this.uno = uno;
-            this.dos = dos;
-            this.cont = 0;
+    public int CalcularDestino(int D) { //Recalcula el destino si se golpea dos veces
+        if (D == 1) {
+            return 2;
         }
-
-        public int getUno() {
-            return this.uno;
+        if (D == 2) {
+            return 1;
         }
-
-        public int getDos() {
-            return this.dos;
+        if (D == 3) {
+            return 4;
         }
-
-        public int getCont() {
-            return this.cont;
+        if (D == 4) {
+            return 3;
         }
+        return 0;
+    }
 
-        public void setCont() {
-            this.cont = this.cont++;
-        }
 
-        public void resetCont() {
-            this.cont = 0;
+    public void Juego(int GolpeJuego, int DestinoJuego) {
+
+        if (PrimerGolpe == true) {
+            PrimerGolpe = false;
+            GolpeAnterior = GolpeJuego;
+            DestinoAnterior = DestinoJuego;
+            Log.d("JUEGO", "PRIMER GOLPE");
+        } else {
+            if (GolpeJuego == GolpeAnterior) { //SI GOLPEA DOS VECES...
+                DestinoJuego = CalcularDestino(DestinoJuego);
+                DestinoAnterior = DestinoJuego;
+                GolpeAnterior = GolpeJuego;
+                Log.d("JUEGO","DOS VECES");
+            } else {
+                if (Golpe != DestinoAnterior) {
+                    //PIERDE
+                    Log.d("JUEGO", "PERDIO");
+                    setContentView(R.layout.perdio);
+                } else {
+                    if (GolpeJuego == DestinoAnterior) {
+                        Log.d("JUEGO", "GOLPE ACERTADO");
+                        GolpeAnterior = GolpeJuego;
+                        DestinoAnterior = DestinoJuego;
+                    }
+                }
+            }
         }
     }
 
 
-    Boton Boton1 = new Boton(3, 4);
-    Boton Boton2 = new Boton(4, 3);
-    Boton Boton3 = new Boton(1, 2);
-    Boton Boton4 = new Boton(2, 1);
 
     public void clickBoton1(View v) {
-        Boton1.setCont();
+        Golpe=1;
+        Destino=3;
         Log.d("CLICK", "Click Boton 1");
+        Juego(Golpe, Destino);
     }
 
     public void clickBoton2(View v) {
-        Boton2.setCont();
+        Golpe=2;
+        Destino=4;
         Log.d("CLICK", "Click Boton 2");
+        Juego(Golpe, Destino);
     }
 
     public void clickBoton3(View v) {
-        Boton3.setCont();
+        Golpe=3;
+        Destino=1;
         Log.d("CLICK", "Click Boton 3");
+        Juego(Golpe, Destino);
     }
 
     public void clickBoton4(View v) {
-        Boton4.setCont();
+        Golpe=4;
+        Destino=2;
         Log.d("CLICK", "Click Boton 4");
+        Juego(Golpe, Destino);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
+        PrimerGolpe = true;
  }
 }
